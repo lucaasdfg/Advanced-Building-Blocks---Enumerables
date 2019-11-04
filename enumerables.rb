@@ -102,4 +102,36 @@ module Enumerable
             count
         end
 
+        def my_map(*proc_obj)
+            return to_enum if !block_given? && proc_obj.empty?
+        
+            ret_arr = []
+            if !proc_obj.empty?
+              my_each { |i| ret_arr.push(proc_obj[0].call(i)) }
+            else
+              my_each { |i| ret_arr.push(yield(i)) }
+            end
+            ret_arr
+          end
+
+          def my_inject(*xarg)
+            if xarg.empty?
+              ret_val = first
+              my_each_with_index { |val, i| ret_val = yield(ret_val, val) if i.positive? } if block_given?
+            elsif xarg[0].class == Symbol
+              ret_val = first
+              my_each_with_index do |x, i|
+                ret_val = xarg[0].to_proc.call(ret_val, x) if i.positive?
+              end
+            elsif xarg[0].class == Integer && xarg[1].class == Symbol
+              ret_val = xarg[0]
+              my_each { |val| ret_val = xarg[1].to_proc.call(ret_val, val) }
+            else
+              ret_val = xarg[0]
+              my_each { |i| ret_val = yield(ret_val, i) }
+            end
+        
+            ret_val
+          end
+        end
 
