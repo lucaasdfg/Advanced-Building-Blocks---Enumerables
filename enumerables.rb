@@ -91,5 +91,15 @@ module Enumerable
             true
           end
       
+          def my_count(*xarg)
+            count = 0
+            if xarg.empty?
+                my_each { count += 1 } unless block_given?
+                 my_each { |i| count += 1 if yield(i) } if block_given?
+                else
+                 my_each { |i| count += 1 if i == xarg[0] }
+             end
+            count
+        end
 
 
