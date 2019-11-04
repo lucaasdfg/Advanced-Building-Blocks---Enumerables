@@ -70,6 +70,26 @@ module Enumerable
           end
           false
         end
+
+        def my_none?(*arg)
+            if arg.empty?
+              my_each { |i| return false if yield(i) } if block_given?
+              return true if block_given?
+        
+              my_each { |i| return false if i }
+              return true
+            else
+              my_each { |i| return false if i.match(arg[0]) } if arg[0].class == Regexp
+              return true if arg[0].class == Regexp
+        
+              my_each { |i| return false if i.class == arg[0] } if arg[0].is_a?(Class)
+        
+              return true if arg[0].is_a?(Class)
+        
+              my_each { |i| return false if i == arg[0] }
+            end
+            true
+          end
       
 
 

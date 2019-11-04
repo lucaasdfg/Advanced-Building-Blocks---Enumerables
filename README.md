@@ -18,3 +18,6 @@ Modify your #my_map method to take either a proc or a block. It won’t be neces
 ## quick tips
 
 yield and the #call method.
+
+## 
+@Lucaasdfg
