@@ -51,7 +51,7 @@ module Enumerable
     true
   end
 
-    def my_any(*arg)
+    def my_any?(*arg)
         if arg.empty?
             my_each { |i| return true if yield(i) } if block_given?
       
