@@ -49,9 +49,9 @@ module Enumerable
       return true if arg[0].is_a?(Class)
 
       my_each { |i| return false unless i == arg[0] }
-end
+    end
     true
-end
+  end
 
   def my_any?(*arg)
     if arg.empty?
