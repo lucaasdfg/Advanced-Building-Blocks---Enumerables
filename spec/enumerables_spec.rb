@@ -27,10 +27,10 @@ describe Enumerable do
 
   describe 'my_any?' do
     it 'if element match return true' do
-      expect([1, 2, 3, 4].my_any? { |x| x == x }).to be true
+      expect([1, 2, 3, 4].my_any? { |x| x == 4 }).to be true
     end
     it "if element doesn't match return false" do
-      expect([1, 2, 3, 4].my_any? { |x| x != x }).to be false
+      expect([1, 2, 3, 4].my_any? { |x| x == 8 }).to be false
     end
   end
   it 'if doesnt pass any block or parameter return false if none of the elements are equal to true' do
