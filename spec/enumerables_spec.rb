@@ -2,8 +2,8 @@
 
 require_relative '../enumerables.rb'
 describe Enumerable do
-  array = [1, 2, 3, 4, 5]
-  falsy_array = [1, 22, false, 0, 'oop']
+  let(:array) {[1, 2, 3, 4, 5]}
+  let(:falsy_array) {[1, 22, false, 0, 'oop']}
 
   describe 'my_select' do
     it 'select all the items in the array with data type Numeric' do
